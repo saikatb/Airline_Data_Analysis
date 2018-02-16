@@ -1,11 +1,11 @@
 
-After skimming through the dataset, below questions came in into the prominense:
+After skimming through the dataset, below questions came into the prominense:
 
-1) Which flights departured delayed, ontime or before time delays
-2) Which are the best airports in terms of on time departures ?
-3) What is the average speed of all the aircrafts which flown from 3 origins to several destinations?
+1) Which flights departured delayed, ontime or before time delays ?
+2) Which are the best airports as far as ontime departure of the flights are concerened ?
+3) What is the average speed of all the aircrafts which have flown from 3 origins i.e JFK,LGA and EWR to several destinations?
 4) What is the frequnecy of those speed ? 
-5) Which speed one flight should keep if it wants to arrive on time ? 
+5) What speed a flight should maintian to arrive its destination on time ? 
 6) What are the maximum number flights flown to a particular destination ? 
 
 The 1st step is to import all the required libraries in python.
