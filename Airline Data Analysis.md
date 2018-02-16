@@ -1,5 +1,5 @@
 
-After skimming through the dataset, below questions came in into the prominense.
+After skimming through the dataset, below questions came in into the prominense:
 
 1) Which flights departured delayed, ontime or before time delays
 2) Which are the best airports in terms of on time departures ?
@@ -33,117 +33,6 @@ airline_null = pd.DataFrame((airline.isnull().sum()),columns=['Null_Values'])
 airline_null['%ofNullValeues'] = ((airline_null['Null_Values'])/336776*100).sort_values(ascending=True)
 airline_null
 ```
-<div>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Null_Values</th>
-      <th>%ofNullValeues</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>year</th>
-      <td>0</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>month</th>
-      <td>0</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>day</th>
-      <td>0</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>dep_time</th>
-      <td>8255</td>
-      <td>2.451184</td>
-    </tr>
-    <tr>
-      <th>sched_dep_time</th>
-      <td>0</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>dep_delay</th>
-      <td>8255</td>
-      <td>2.451184</td>
-    </tr>
-    <tr>
-      <th>arr_time</th>
-      <td>8713</td>
-      <td>2.587180</td>
-    </tr>
-    <tr>
-      <th>sched_arr_time</th>
-      <td>0</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>arr_delay</th>
-      <td>9430</td>
-      <td>2.800081</td>
-    </tr>
-    <tr>
-      <th>carrier</th>
-      <td>0</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>flight</th>
-      <td>0</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>tailnum</th>
-      <td>2512</td>
-      <td>0.745896</td>
-    </tr>
-    <tr>
-      <th>origin</th>
-      <td>0</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>dest</th>
-      <td>0</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>air_time</th>
-      <td>9430</td>
-      <td>2.800081</td>
-    </tr>
-    <tr>
-      <th>distance</th>
-      <td>0</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>hour</th>
-      <td>0</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>minute</th>
-      <td>0</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>time_hour</th>
-      <td>0</td>
-      <td>0.000000</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
-
 
 ```python
 airline['dep_delay'].fillna(value=airline['dep_delay'].mean(),axis=0,inplace=True)
