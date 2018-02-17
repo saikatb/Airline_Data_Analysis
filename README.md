@@ -1,4 +1,4 @@
-# Airline_Data_Analysis
+# Airline Data Analysis
 
 In this analysis we want to give a summary about all the parameters that contribute positively or negatively in order to come to a sound conclusion. 
 
