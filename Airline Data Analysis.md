@@ -26,13 +26,14 @@ airline.shape
     (336776, 19)
 ```
 
-**airline_null** is the new dataframe been created with a view to contain all the null values of the **airline** dataframe.
+**airline_null** is another dataframe which contains all the null values of the **airline** dataframe and there percentage value. It had been ovserved that the percentage of the null values are way below than 15 percent and henceforth is not worthy of deletion.
 
 ```python
 airline_null = pd.DataFrame((airline.isnull().sum()),columns=['Null_Values'])
 airline_null['%ofNullValeues'] = ((airline_null['Null_Values'])/336776*100).sort_values(ascending=True)
 airline_null
 ```
+
 
 ```python
 airline['dep_delay'].fillna(value=airline['dep_delay'].mean(),axis=0,inplace=True)
@@ -92,13 +93,22 @@ airline_no_delays.isnull().sum()
     dtype: int64
 ```
 
-
+A new column "origin_to_dest" has been added to the dataframe.
 
 ```python
 airline_no_delays['arr_time'].fillna(value=airline_no_delays['arr_time'].mean(),axis=0,inplace=True)
 airline['origin_to_dest'] = airline['origin'] +'_to_'+ airline['dest']
 ```
 
+```python
+airline_no_delays['origin'].value_counts()
+
+    JFK    6239
+    EWR    5585
+    LGA    4690
+    Name: origin, dtype: int64
+```
+Below graph is a pictorial representation of the value counts of number of flights. The graph also depicts the fact that how many plane has took off from 3 different origins.
 
 ```python
 from matplotlib.pyplot import show
@@ -119,19 +129,11 @@ show()
 
 
 ```python
-airline_no_delays['origin'].value_counts()
-```
-    JFK    6239
-    EWR    5585
-    LGA    4690
-    Name: origin, dtype: int64
-
-
-```python
 airline_no_delays['origin_to_dest'] = airline_no_delays['origin'] +'_to_'+ airline_no_delays['dest']
 ```
 
-
+The dataframe airline_no_delays has been splitted into three different dataframes named **airline_no_delays_JFK, airline_no_delays_EWR, and airline_no_delays_LGA**.
+The leit motif of doing this is to ease our analysis as we will be dealing with lesser number of rows for each of the dataframes.
 
 ```python
 airline_no_delays_JFK = airline_no_delays[airline_no_delays['origin'] == 'JFK']
@@ -161,7 +163,6 @@ for p in ax.patches:
            '{:1.3f}'.format(height/total),
             ha="center")
 show()
-
 ```
 ![png](output_16_0.png)
 
@@ -187,7 +188,6 @@ for p in ax.patches:
             ha="center")
 show()
 ```
-
 ![png](output_17_0.png)
 
 
@@ -215,6 +215,7 @@ show()
 ![png](output_18_0.png)
 
 
+Below is the normal distribution and box plot of velocities of several flights of the dataframe airline_no_delays_LGA.
 
 ```python
 import seaborn as sns
@@ -231,6 +232,7 @@ sns.boxplot(airline_no_delays_LGA['Velocity_Miles_Minutes'],color='orchid')
 ![png](output_19_2.png)
 
 
+Below is the normal distribution and box plot of velocities of several flights of the dataframe airline_no_delays_JFK.
 
 ```python
 import seaborn as sns
@@ -247,6 +249,7 @@ sns.boxplot(airline_no_delays_JFK['Velocity_Miles_Minutes'],color='orchid')
 ![png](output_20_2.png)
 
 
+Below is the normal distribution and box plot of velocities of several flights of the dataframe airline_no_delays_EWR.
 
 ```python
 import seaborn as sns
@@ -263,6 +266,7 @@ sns.boxplot(airline_no_delays_EWR['Velocity_Miles_Minutes'],color='orchid')
 ![png](output_21_2.png)
 
 
+Normal distribution in a single frame.
 
 ```python
 import seaborn as sns
@@ -278,7 +282,7 @@ ax1.set_xlim([3,10])
 ax2.set_xlim([3,10])
 ax3.set_xlim([3,10])
 
- # plots an axis lable
+# plots an axis lable
 plt.xlabel("Velocity in Miles per Minutes")    
 plt.title("Velocity Distribution from different Origin points for no delays")
 # sets our legend for our graph.
@@ -312,7 +316,6 @@ plt.legend(('Origin EWR', 'Origin JFK','Origin LGA'),loc='best') ;
 
 A new dataframe named **airline_early_departures** has been created and later on tho
 
-
 ```python
 airline_early_departures = airline[airline['dep_delay'] < 0]
 airline_early_departures['Velocity_Miles_Minutes'] = airline_early_departures['distance']/airline_early_departures['air_time']
@@ -325,7 +328,7 @@ airline_early_departures_JFK.shape, airline_early_departures_EWR.shape, airline_
     ((61146, 21), (59300, 21), (63129, 21))
 ```
 
-
+Normal distribution in a single frame.
 
 ```python
 import seaborn as sns
@@ -347,10 +350,7 @@ plt.title("Velocity Distribution for early departure flights from different Orig
 # sets our legend for our graph.
 plt.legend(('Origin EWR', 'Origin JFK','Origin LGA'),loc='best') ;
 ```
-
-
 ![png](output_25_0.png)
-
 
 
 ```python
@@ -374,12 +374,13 @@ plt.title("Velocity Distribution for early departure flights from different Orig
 plt.legend(('Origin EWR', 'Origin JFK','Origin LGA'),loc='best') ;
 ```
 
-
 ![png](output_26_0.png)
 
 
+A new dataframe named **airline_delayed_departures** has been created to hold the values which will contain those rows which will reflect the delayed flights.
 
 ```python
+
 airline_delayed_departures = airline[airline['dep_delay'] > 0]
 airline_delayed_departures['Velocity_Miles_Minutes'] = airline_delayed_departures['distance']/airline_delayed_departures['air_time']
 airline_delayed_departures['origin_to_dest'] = airline_delayed_departures['origin'] +'_to_'+ airline_delayed_departures['dest']
@@ -390,9 +391,10 @@ airline_delayed_departures_LGA = airline_delayed_departures[airline_delayed_depa
 airline_delayed_departures_JFK.shape, airline_delayed_departures_EWR.shape, airline_delayed_departures_LGA.shape
 
     ((43894, 21), (55950, 21), (36843, 21))
+
 ```
 
-
+Normal distribution in a single frame.
 
 ```python
 import seaborn as sns
@@ -563,7 +565,7 @@ airline_ontime_arrival['origin'].value_counts()
     Name: origin, dtype: int64
 ```
 
-
+Frome the below pivot table we can have an idea about the number of flights flying everymonth.
 
 ```python
 airline_ontime_arrival.groupby(['origin','month'])['origin'].count()
@@ -610,6 +612,7 @@ airline_ontime_arrival.groupby(['origin','month'])['origin'].count()
 
 
 
+
 ```python
 airline_ontime_arrival_JFK = airline_ontime_arrival[airline_ontime_arrival['origin'] == 'JFK']
 airline_ontime_arrival_EWR = airline_ontime_arrival[airline_ontime_arrival['origin'] == 'EWR']
@@ -618,8 +621,6 @@ airline_ontime_arrival_JFK.shape, airline_ontime_arrival_EWR.shape, airline_onti
 
     ((1804, 21), (1916, 21), (1689, 21))
 ```
-
-
 
 ```python
 import seaborn as sns
