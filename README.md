@@ -1,6 +1,6 @@
 # Airline Data Analysis
 
-In this analysis we want to give a summary about all the parameters that contribute positively or negatively in order to come to a sound conclusion. 
+In this analysis we want to give a summary about all the parameters that contribute positively or negatively about coming to a sound conclusion about several parameters.
 
 This data set will contain the data which will give us a gist and the summary about below things : 
 
