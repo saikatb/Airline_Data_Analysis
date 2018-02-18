@@ -1,7 +1,7 @@
 
 After skimming through the dataset, below questions came into the prominense:
 
-1) Which flights departured delayed, ontime or before time delays ?
+1) Which are the flights that have delayed, ontime or before time departures ?
 2) Which are the best airports as far as ontime departure of the flights are concerened ?
 3) What is the average speed of all the aircrafts which have flown from 3 origins i.e JFK,LGA and EWR to several destinations?
 4) What is the frequnecy of those speed ? 
@@ -21,7 +21,7 @@ sns.set_style('whitegrid')
 A new dataframe named **"airline"** has been created to hold all the values of the csv files.
 
 ```python
-airline = pd.read_csv('flight_data.csv')
+airline = pd.read_csv('your_local_path+'/flight_data.csv')
 airline.shape
     (336776, 19)
 ```
